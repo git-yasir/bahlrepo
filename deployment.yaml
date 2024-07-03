@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bahl-app
+  name: bahl-appsvc
 spec:
   selector:
     app: bahl-app
@@ -33,4 +33,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 9090
-  type: LoadBalancer
+  type: NodePort
