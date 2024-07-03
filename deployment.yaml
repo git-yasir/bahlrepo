@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bahldeploy
+  labels:
+    app: bahl-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: bahl-app
+  template:
+    metadata:
+      labels: 
+        app: bahl-app
+    spec:
+      
+      containers:
+      - name: bahl-app
+        image: yasirdocker/bahl-app
+        
+
+---
+# Service section: Exposes the deployment to external traffic using LoadBalancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: bahl-app
+spec:
+  selector:
+    app: bahl-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9090
+  type: LoadBalancer
