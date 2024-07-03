@@ -40,19 +40,19 @@ pipeline {
         stage("Delete Existing Deployment") {
             steps {
                 script {
-                    def deploymentExists = sh(script: "sudo -u ubuntu kubectl get deployment deploy1", returnStatus: true) == 0
-                    def serviceExists = sh(script: "sudo -u ubuntu kubectl get svc bahl-app", returnStatus: true) == 0
+                    def deploymentExists = sh(script: "sudo -u ubuntu kubectl get deployment bahldeploy", returnStatus: true) == 0
+                    def serviceExists = sh(script: "sudo -u ubuntu kubectl get svc bahl-appsvc ", returnStatus: true) == 0
                     
                     if (deploymentExists) {
                         echo "Deleting the Existing Deployment"
-                        sh "sudo -u ubuntu kubectl delete deployment deploy1"
+                        sh "sudo -u ubuntu kubectl delete deployment bahldeploy"
                     } else {
                         echo "No existing deployment found. Skipping deletion."
                     }
 
                     if (serviceExists) {
                         echo "Deleting the Existing Service"
-                        sh "sudo -u ubuntu kubectl delete svc bahl-app"
+                        sh "sudo -u ubuntu kubectl delete svc bahl-appsvc "
                     } else {
                         echo "No existing service found. Skipping deletion."
                     }
