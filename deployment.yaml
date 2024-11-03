@@ -5,7 +5,7 @@ metadata:
   labels:
     app: bahl-app
 spec:
-  replicas: 2
+  replicas: 15
   selector:
     matchLabels:
       app: bahl-app
